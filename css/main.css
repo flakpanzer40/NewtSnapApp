@@ -176,11 +176,6 @@ input[type='color'] {
 	height: 25px;
 }
 
-#loading {
-	display: block;
-	margin: 25px auto 0px;
-}
-
 #info h2 {
 	font-size: 2.5rem;
 	font-family: 'Montserrat', sans-serif;

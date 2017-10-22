@@ -23,6 +23,8 @@
     <script src="ocrad.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
+        var count = 0;
+        var which_text = 0;
         function recognize_image(){
             document.getElementById('transcription').innerText = "(Recognizing...)"
 
@@ -32,47 +34,51 @@
 
             })
         }
+
         function createNote () {
-            var title = document.noteform.title.value;
-            var col = document.noteform.col.value;
+           var title = document.noteform.title.value;
+           var col = document.noteform.col.value;
 
-            var reader = new FileReader();
-            reader.onload = function(){
-                var img = new Image();
-                img.src = reader.result;
-                img.onload = function(){
-                    OCRAD(img, function(text){
-                        document.getElementById('notes').innerHTML += '<div class="new" style="background-color: ' + col + '"><button class="delete" onclick="remove()">Delete</button>' + '<h1 contenteditable="true">' + title + '</h1><p contenteditable="true" class="readthis">' + text + '</p><button class="speak" onclick="speak()">Read note</button></div>';
+           var reader = new FileReader();
+           reader.onload = function(){
+               var img = new Image();
+               img.src = reader.result;
+               img.onload = function(){
+                   OCRAD(img, function(text){
+                       document.getElementById('notes').innerHTML += '<div  class="new" style="background-color: ' +
+                        col + '"><button class="delete" onclick="remove()">Delete</button>' + '<h1 contenteditable="true">' + title +
+                        '</h1><p contenteditable="true" class = p' + count +' ">' + text + '</p><button class="speak" onclick="which('+count+');speak();">Read note</button></div>';
+                   count++;
                     })
-                }
-            }
-            reader.readAsDataURL(document.getElementById('pic').files[0])
+               }
+           }
+           reader.readAsDataURL(document.getElementById('pic').files[0])
 
-            document.getElementById('notes').innerHTML += "<img src='images/loading.gif' id='loading'/>";
-
-            setTimeout(function(){ document.getElementById('loading').style.display = "none";}, 3000);
-
-            return false;
+           return false;
+       }
+        function which(x){
+            which_count = x;
         }
+       function remove() {
+           var button = event.target;
+           button.parentNode.parentNode.removeChild(button.parentNode);
+       }
 
-        function remove() {
-            var button = event.target;
-            button.parentNode.parentNode.removeChild(button.parentNode);
-        }
+       function save() {
+           var divtosave = $("#notes").html();
+           localStorage.setItem('saveddiv', divtosave);
+            localStorage.setItem('counts', count);
+       }
 
-        function save() {
-            var divtosave = $("#notes").html();
-            localStorage.setItem('saveddiv', divtosave);
-        }
+       function onload() {
+           $("#notes").html(localStorage.getItem('saveddiv'));
+            count = localStorage.getItem('counts');
+       }
 
-        function onload() {
-            $("#notes").html(localStorage.getItem('saveddiv'));
-        }
-
-        function speak() {
-            var userVersion = $('').text();
-            responsiveVoice.speak(userVersion);
-        }
+       function speak() {
+           var userVersion = document.getElementById('notes').getElementsByClassName('p' + which_count)[0].innerHTML;
+           responsiveVoice.speak(userVersion);
+       }
 
     </script>
     <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>
