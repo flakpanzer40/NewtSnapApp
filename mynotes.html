@@ -42,7 +42,7 @@
                 img.src = reader.result;
                 img.onload = function(){
                     OCRAD(img, function(text){
-                        document.getElementById('notes').innerHTML += '<div class="new" style="background-color: ' + col + '"><button class="delete" onclick="remove()">Delete</button>' + '<h1 contenteditable="true">' + title + '</h1><p contenteditable="true">' + text + '</p><button class="speak" onclick="speak()">Read note</button></div>';
+                        document.getElementById('notes').innerHTML += '<div class="new" style="background-color: ' + col + '"><button class="delete" onclick="remove()">Delete</button>' + '<h1 contenteditable="true">' + title + '</h1><p contenteditable="true" class="readthis">' + text + '</p><button class="speak" onclick="speak()">Read note</button></div>';
                     })
                 }
             }
@@ -70,7 +70,7 @@
         }
 
         function speak() {
-            var userVersion = "function still in development";
+            var userVersion = $('').text();
             responsiveVoice.speak(userVersion);
         }
 
@@ -82,10 +82,12 @@
         <h1>Create a new note!</h1>
         <form name='noteform' method='post' onSubmit='return createNote()'>
             <p><input type='text' id='title' placeholder='Name your note!' autofocus /></p>
-            <!--<p><input type="file" id="pic"></p>-->
-            <p><input type="file" id='pic' accept="image/*"></p>
             <p>
-            <label for="color">Note colour:</label>
+                <label for='pic' id='filelab'>Choose file...</label>
+                <input type="file" id='pic' accept="image/*"></p>
+
+            <p>
+            <label for="col" id='collab'>Note colour:</label>
             <input type='color' id="col" />
             </p>
 
@@ -93,6 +95,8 @@
             <input type='submit' value='Create' />
             <input type='reset' value='Reset' />
             </p>
+
+            <p id='remind'>Don't forget to save all changes!</p>
         </div>
         </form>
 
