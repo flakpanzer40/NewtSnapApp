@@ -1,0 +1,193 @@
+html {
+	font-size: 10px;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+
+}
+
+p {
+	margin-bottom: 20px;
+}
+
+.new {
+	padding: 15px 20px;
+	background-color: yellow;
+	margin: 20px 30px;
+	border-radius: 10px;
+}
+
+.new p {
+	font-size: 2rem;
+}
+
+.new h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+	font-size: 3rem;
+	color: #000;
+}
+
+.delete {
+	float: right;
+	padding: 5px;
+}
+
+#intro {
+	text-align: center;
+	background: #51F; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(left top, #51F, #F7F); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right, #51F, #F7F); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, #51F, #F7F); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to bottom right, #51F, #F7F); /* Standard syntax (must be last) */
+	height: 500px;
+	vertical-align: middle;
+	z-index: 1;
+	 clip-path: polygon(0 0, 1600px 0, 1600px 87%, 0 100%);
+	 -webkit-clip-path: polygon(0 0, 1600px 0, 1600px 87%, 0 100%);
+	);
+}
+
+#intro img {
+	margin-top: 30px;
+}
+
+#intro p {
+	font-size: 2rem;
+	font-style: italic;
+	color: #FFF;
+	margin-top: 15px;
+}
+
+h1 {
+	font-size: 5rem;
+	font-family: 'Montserrat', sans-serif;
+	padding-top: 20px;
+	color: #fff;
+}
+
+.save {
+	display: block;
+	margin: auto;
+	border: solid 3px #06F;
+	color: #06F;
+	padding: 10px 20px;
+	background-color: #FFF;
+	font-size: 2rem;
+	margin-top: 20px;
+}
+
+#create {
+	text-align: center;
+	background: #06F; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(left top, #06F, #0DF); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right, #06F, #0DF); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, #06F, #0DF); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to bottom right, #06F, #0DF); /* Standard syntax (must be last) */
+	height: 500px;
+	vertical-align: middle;
+	z-index: 1;
+	 clip-path: polygon(0 0, 1600px 0, 1600px 87%, 0 100%);
+	 -webkit-clip-path: polygon(0 0, 1600px 0, 1600px 87%, 0 100%);
+  );
+}
+
+input[type='text'] {
+	font-size: 2.6rem;
+	margin-top: 50px;
+	padding: 5px 10px;
+	border: solid 3px #FFF;
+}
+
+label {
+	font-size: 2.5rem;
+	margin-right: 20px;
+	color: #FFF;
+}
+
+input[type='submit'], input[type='reset'] {
+	font-size: 2rem;
+	margin-top: 30px;
+    color: #555;
+	padding: 10px 20px;
+	color: #FFF;
+	background-color: transparent;
+	border: solid 3px #FFF;
+	text-transform: uppercase;
+}
+
+input[type='reset'] {
+	margin-left: 30px;
+
+}
+
+input[type='file'] {
+	margin-left: 140px;
+	margin-top: 20px;
+	color: #FFF;
+}
+
+input[type='color'] {
+	width: 40px;
+	height: 25px;
+}
+
+#loading {
+	display: block;
+	margin: 25px auto 0px;
+}
+
+#content h2 {
+	font-size: 2.5rem;
+	font-family: 'Montserrat', sans-serif;
+	margin-bottom: 10px;
+}
+
+#content p {
+	font-size: 1.6rem;
+	line-height: 155%;
+}
+
+#content {
+	margin: 20px 30px;
+}
+
+nav {
+	display: block;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #333;
+	width: 100%;
+	z-index: 2;
+	text-align: left;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+nav img {
+	height: 5vh;
+}
+
+nav li {
+	font-size: 2.4rem;
+	display: inline-block;
+	padding: 10px 15px;
+	vertical-align: middle;
+}
+
+nav li:first-child {
+	margin-left: 20px;
+}
+
+nav li a {
+	transition: color .2s ease-in-out;
+}
+
+nav li a:link, nav li a:visited {
+	 color: #CCC;
+	 text-decoration: none;
+}
+
+nav li a:hover, nav li a:active {
+	text-decoration: none;
+	color: #FFF;
+}

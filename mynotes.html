@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <title>My Notes</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/browser_reset.css" type="text/css"/>
+    <link rel="stylesheet" href="css/main.css" type="text/css"/>
+
+</head>
+
+<body onload='onload()'>
+    <nav>
+        <ul>
+            <li><img src='images/newt_logo_final.gif' /></li>
+            <li><a href='index.html'>About</a></li>
+            <li><a href='mynotes.html'>My Notes</a></li>
+        </ul>
+    </nav>
+    <script src="ocrad.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function recognize_image(){
+            document.getElementById('transcription').innerText = "(Recognizing...)"
+
+            OCRAD(document.getElementById("pic"), {
+                numeric: true
+            }, function(text){
+
+            })
+        }
+        function createNote () {
+            var title = document.noteform.title.value;
+            var col = document.noteform.col.value;
+
+            var reader = new FileReader();
+            reader.onload = function(){
+                var img = new Image();
+                img.src = reader.result;
+                img.onload = function(){
+                    OCRAD(img, function(text){
+                        document.getElementById('notes').innerHTML += '<div class="new" style="background-color: ' + col + '"><button class="delete" onclick="remove()">Delete</button>' + '<h1 contenteditable="true">' + title + '</h1><p contenteditable="true">' + text + '</p><button class="speak" onclick="speak()">Read note</button></div>';
+                    })
+                }
+            }
+            reader.readAsDataURL(document.getElementById('pic').files[0])
+
+            document.getElementById('notes').innerHTML += "<img src='images/loading.gif' id='loading'/>";
+
+            setTimeout(function(){ document.getElementById('loading').style.display = "none";}, 3000);
+
+            return false;
+        }
+
+        function remove() {
+            var button = event.target;
+            button.parentNode.parentNode.removeChild(button.parentNode);
+        }
+
+        function save() {
+            var divtosave = $("#notes").html();
+            localStorage.setItem('saveddiv', divtosave);
+        }
+
+        function onload() {
+            $("#notes").html(localStorage.getItem('saveddiv'));
+        }
+
+        function speak() {
+            var userVersion = "function still in development";
+            responsiveVoice.speak(userVersion);
+        }
+
+    </script>
+    <script src="http://responsivevoice.org/responsivevoice/responsivevoice.js"></script>
+
+    <div id='create'>
+        <div id='content'>
+        <h1>Create a new note!</h1>
+        <form name='noteform' method='post' onSubmit='return createNote()'>
+            <p><input type='text' id='title' placeholder='Name your note!' autofocus /></p>
+            <!--<p><input type="file" id="pic"></p>-->
+            <p><input type="file" id='pic' accept="image/*"></p>
+            <p>
+            <label for="color">Note colour:</label>
+            <input type='color' id="col" />
+            </p>
+
+            <p>
+            <input type='submit' value='Create' />
+            <input type='reset' value='Reset' />
+            </p>
+        </div>
+        </form>
+
+    </div>
+
+    <button onclick='save()' class='save'>save all changes</button>
+
+    <div id='notes'>
+
+    </div>
+
+
+</body>
+</html>
